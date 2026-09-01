@@ -1,4 +1,4 @@
-import Tunnel from "./tunnel.js"
+import { Tunnel } from "./tunnel.js"
 
 /**
  * Base link abstraction built from inbound and outbound event tunnels.
@@ -11,7 +11,7 @@ import Tunnel from "./tunnel.js"
  * work on the class prototype. The constructor executes those initializers for
  * each new instance.
  */
-export default class TheLink {
+export class TheLink {
 
     /**
      * Events received by this link from other links or adapters.

@@ -1,5 +1,5 @@
 import { Finalizer, Forwarder, Interceptor, Subscriber } from "../tunnel.js"
-import TheLink, { Publisher, TunnelName } from "../the-link.js"
+import { TheLink, Publisher, TunnelName } from "../the-link.js"
 
 /**
  * Register a method as an interceptor on one of the link tunnels.

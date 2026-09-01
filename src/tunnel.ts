@@ -7,7 +7,7 @@
  * then result finalizers. Subscribers and forwarders contribute results, while
  * interceptors transform payload values and finalizers transform result values.
  */
-export default class Tunnel {
+export class Tunnel {
 
     /**
      * Prefix-matched functions that can transform values before publication.

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid"
-import TheLink from "./the-link.js"
-import Tunnel from "./tunnel.js"
+import { TheLink } from "./the-link.js"
+import { Tunnel } from "./tunnel.js"
 
 /**
  * Reactive property synchronized through a TheLink instance.
@@ -10,7 +10,7 @@ import Tunnel from "./tunnel.js"
  * also exposes a local tunnel that publishes `change` whenever its stored value
  * changes.
  */
-export default class Property<Value> {
+export class Property<Value> {
 
     /**
      * Local notification tunnel for this property's value changes.
