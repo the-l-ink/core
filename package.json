@@ -19,6 +19,10 @@
       "types": "./dist/decorators/escript.d.ts",
       "default": "./dist/decorators/escript.js"
     },
+    "./legacy": {
+      "types": "./dist/decorators/legacy.d.ts",
+      "default": "./dist/decorators/legacy.js"
+    },
     "./property": {
       "types": "./dist/property.d.ts",
       "default": "./dist/property.js"
