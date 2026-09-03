@@ -8,7 +8,7 @@ const encoder = new TextEncoder()
 
 const decoder = new TextDecoder("utf-8", { fatal: true })
 
-export const defaultSerialize: Serialize = value => {
+export const serializeJSON: Serialize = value => {
 
     const serialized = JSON.stringify(value)
 
@@ -17,4 +17,4 @@ export const defaultSerialize: Serialize = value => {
     return encoder.encode(serialized)
 }
 
-export const defaultDeserialize: Deserialize = bytes => JSON.parse(decoder.decode(bytes))
+export const deserializeJSON: Deserialize = bytes => JSON.parse(decoder.decode(bytes))

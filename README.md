@@ -2,7 +2,7 @@
 
 Composable bidirectional event routing without a transport or application model.
 Core provides the primitives shared by every The Link adapter: tunnels, links,
-synchronized properties, codecs, and method decorators.
+synchronized properties, method decorators, and optional byte utilities.
 
 ## Install
 
@@ -123,16 +123,28 @@ The available decorators are `Intercept`, `Subscribe`, `Forward`, `Finalize`,
 decorator form can import the compatible implementations from
 `@the-link/core/decorators/legacy`.
 
+## JSON bytes
+
+`serializeJSON()` and `deserializeJSON()` provide the equivalent of JSON
+stringification and parsing over UTF-8 bytes:
+
+```ts
+import { deserializeJSON, serializeJSON } from "@the-link/core"
+
+const bytes = serializeJSON({ ready: true })
+const value = deserializeJSON(bytes)
+```
+
+They are utilities, not part of Link routing. Adapters may use them, replace
+them, or operate without them.
+
 ## Entry points
 
 | Import | Contract |
 | --- | --- |
-| `@the-link/core` | links, tunnels, properties, codecs, and their types |
+| `@the-link/core` | links, tunnels, properties, JSON byte utilities, and their types |
 | `@the-link/core/decorators` | ECMAScript decorators |
 | `@the-link/core/decorators/legacy` | legacy TypeScript decorators |
-
-The default codec serializes JSON as UTF-8 bytes. A transport using a custom
-codec must configure the same serializer and deserializer at both ends.
 
 ## Development
 

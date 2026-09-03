@@ -1,6 +1,6 @@
 {
   "name": "@the-link/core",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Composable bidirectional event routing primitives.",
   "type": "module",
   "sideEffects": false,
@@ -36,9 +36,10 @@
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "check": "tsc --noEmit",
+    "test": "bun test",
     "build": "node --run clean && tsc",
     "verify:package": "npm pack --dry-run --ignore-scripts",
-    "verify": "node --run check && node --run build && node --run verify:package",
+    "verify": "node --run check && node --run test && node --run build && node --run verify:package",
     "prepack": "node --run build"
   },
   "dependencies": {
