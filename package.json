@@ -1,6 +1,6 @@
 {
   "name": "@the-link/core",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Composable bidirectional event routing primitives.",
   "type": "module",
   "sideEffects": false,

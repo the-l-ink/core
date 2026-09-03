@@ -71,7 +71,7 @@ disconnect()
 ```
 
 Core does not decide what an event means or which transport carries it. The
-Client, Server, Process, and Tab packages adapt this same contract to concrete
+HTTP, IPC, Worker, Frame, and Tab packages adapt this same contract to concrete
 communication boundaries.
 
 ## Properties
