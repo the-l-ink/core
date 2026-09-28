@@ -1,8 +1,29 @@
 export type Bytes = Uint8Array<ArrayBuffer>
 
-export type Serialize = (value: unknown) => Bytes
+/**
+ * Turns streams into references and back for one boundary, such as a `StreamRelay`.
+ */
+export interface StreamReferences {
 
-export type Deserialize = (bytes: Bytes) => unknown
+    /** Registers a local stream to be sent and returns its reference. */
+    export(stream: ReadableStream<unknown>): string
+
+    /** Returns the local stream for a received reference. */
+    import(reference: string): ReadableStream<unknown>
+}
+
+/**
+ * What a boundary supplies to its codec beside the value or the bytes.
+ */
+export interface CodecOptions {
+
+    /** Carries the streams met in the value; a codec that cannot carry streams ignores it. */
+    streams?: StreamReferences
+}
+
+export type Serialize = (value: unknown, options?: CodecOptions) => Bytes
+
+export type Deserialize = (bytes: Bytes, options?: CodecOptions) => unknown
 
 const encoder = new TextEncoder()
 

@@ -123,6 +123,33 @@ The available decorators are `Intercept`, `Subscribe`, `Forward`, `Finalize`,
 decorator form can import the compatible implementations from
 `@the-link/core/decorators/legacy`.
 
+## Stream relay
+
+`StreamRelay` carries `ReadableStream`s across one boundary as references. A
+boundary exports a local stream to get a reference for its payload, and imports
+a received reference to get a local stream. The chunks travel as relay messages
+over the channel the boundary already uses:
+
+```ts
+import { StreamRelay } from "@the-link/core"
+
+const relay = new StreamRelay(message => channel.send(["stream", ...message]))
+
+channel.onMessage(([kind, ...message]) => { if (kind === "stream") relay.receive(message) })
+
+const reference = relay.export(fileStream)      // send it inside a payload
+const stream = relay.import(receivedReference) // read it like any stream
+```
+
+Data flows only as the receiver reads: it grants credit, and the sender reads
+from its source no further than that credit, so neither side buffers without
+bound. Large byte chunks are split so no message holds the channel for long.
+Canceling the received stream cancels its source; a failing source fails the
+received stream; `close()` ends every stream when the channel closes. A
+reference nobody reads is canceled after `idle` milliseconds.
+
+The relay does not choose the channel or serialize its messages.
+
 ## JSON bytes
 
 `serializeJSON()` and `deserializeJSON()` provide the equivalent of JSON
